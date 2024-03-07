@@ -5,8 +5,14 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find_by({ "id" => params["id"] })
-    @entries = Entry.where({ "place_id" => @place["id"] })
+    @user = User.find_by({ "id" => session["user_id"] })
+    if @user != nil
+      @place = Place.find_by({ "id" => params["id"] })
+      @entries = Entry.where({ "place_id" => @place["id"] })
+    else
+      flash["notice"] = "Login first."
+      redirect_to "/places"
+    end
   end
 
   def new
@@ -18,10 +24,10 @@ class PlacesController < ApplicationController
       @place = Place.new
       @place["name"] = params["name"]
       @place.save
-      else
-      flash["notice"] = "Login first."
-      end
-      redirect_to "/places"
+    else
+      flash["notice"] = "Login first"
     end
+    redirect_to "/places"
   end
+end
 
