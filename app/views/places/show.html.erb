@@ -9,16 +9,16 @@
   </div>
 
 <div class="row">
-<% for entry in @entries %>
-<div class="col-md-4">
-  <h4><%= entry["title"] %></h4>
-  <div class="col text-front">
-    <div class="mb-3"><%= entry["occurred_on"] %></div>
+  <% for entry in @entries %>
+    <div class="col-md-4">
+      <h4><%= entry["title"] %></h4>
+    <div class="col text-front">
+      <div class="mb-3"><%= entry["occurred_on"] %></div>
+    </div>
+    <img src="<%= entry["image"] %>" class="img-fluid">
+    <div class="col text-front">
+      <div class="mb-3"><%= entry["description"] %></div>
+    </div>
   </div>
-  <img src="<%= entry["image"] %>" class="img-fluid">
-  <div class="col text-front">
-    <div class="mb-3"><%= entry["description"] %></div>
-  </div>
-</div>
 <% end %>
 
