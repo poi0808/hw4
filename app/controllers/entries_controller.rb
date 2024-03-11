@@ -4,8 +4,10 @@ class EntriesController < ApplicationController
   end
 
   def create
-    if @current_user
+    @user = current_user
+    if @user
       @entry = Entry.new
+      @entry.user_id = @user.id 
       @entry["title"] = params["title"]
       @entry["description"] = params["description"]
       @entry["occurred_on"] = params["occurred_on"]
